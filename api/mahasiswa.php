@@ -13,21 +13,11 @@ switch ($method) {
 				$result = $mhs->getAll();
 			}
 		} catch (Exception $e) {
-			if ($e instanceof ClientError) {
-				$response = [
-					"status" => "fail",
-					"message" => $e->getMessage()
-				];
-				http_response_code($e->getCode());
-				header('Content-Type: application/json');
-				echo json_encode($response);
-				exit();
-			}
 			$response = [
 				"status" => "fail",
 				"message" => $e->getMessage()
 			];
-			http_response_code(500);
+			http_response_code($e->getCode());
 			header('Content-Type: application/json');
 			echo json_encode($response);
 			exit();
@@ -46,21 +36,11 @@ switch ($method) {
 			mahasiswaValidator($data);
 			$result = $mhs->create($data);
 		} catch (Exception $e) {
-			if ($e instanceof ClientError) {
-				$response = [
-					"status" => "fail",
-					"message" => $e->getMessage()
-				];
-				http_response_code($e->getCode());
-				header('Content-Type: application/json');
-				echo json_encode($response);
-				exit();
-			}
 			$response = [
 				"status" => "fail",
 				"message" => $e->getMessage()
 			];
-			http_response_code(500);
+			http_response_code($e->getCode());
 			header('Content-Type: application/json');
 			echo json_encode($response);
 			exit();
@@ -78,27 +58,17 @@ switch ($method) {
 	case 'PUT':
 		try {
 			if (!isset($url[1])) {
-				throw new NotFoundError("id not found");
+				throw new Exception("id not found", 400);
 			}
 			$id = $url[1];
 			$data = json_decode(file_get_contents('php://input'), true);
 			$result = $mhs->update($data, $id);
 		} catch (Exception $e) {
-			if ($e instanceof ClientError) {
-				$response = [
-					"status" => "fail",
-					"message" => $e->getMessage()
-				];
-				http_response_code($e->getCode());
-				header('Content-Type: application/json');
-				echo json_encode($response);
-				exit();
-			}
 			$response = [
 				"status" => "fail",
 				"message" => $e->getMessage()
 			];
-			http_response_code(500);
+			http_response_code($e->getCode());
 			header('Content-Type: application/json');
 			echo json_encode($response);
 			exit();
@@ -114,26 +84,16 @@ switch ($method) {
 	case 'DELETE':
 		try {
 			if (!isset($url[1])) {
-				throw new NotFoundError("id not found");
+				throw new Exception("id not found", 400);
 			}
 			$id = $url[1];
 			$result = $mhs->delete($id);
 		} catch (Exception $e) {
-			if ($e instanceof ClientError) {
-				$response = [
-					"status" => "fail",
-					"message" => $e->getMessage()
-				];
-				http_response_code($e->getCode());
-				header('Content-Type: application/json');
-				echo json_encode($response);
-				exit();
-			}
 			$response = [
 				"status" => "fail",
 				"message" => $e->getMessage()
 			];
-			http_response_code(500);
+			http_response_code($e->getCode());
 			header('Content-Type: application/json');
 			echo json_encode($response);
 			exit();

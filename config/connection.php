@@ -6,11 +6,8 @@ $PASSWORD = '';
 $DB = 'angga_201011401198';
 
 try {
-    $option = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ];
-    $conn = new PDO("mysql:host=$HOST;dbname=$DB", $USERNAME, $PASSWORD, $option);
+    $conn = new PDO("mysql:host=$HOST;dbname=$DB", $USERNAME, $PASSWORD);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     $response = [
         "status" => "fail",

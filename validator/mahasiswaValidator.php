@@ -3,28 +3,28 @@
 function mahasiswaValidator($data)
 {
 	if (!isset($data['nim'])) {
-		throw new ClientError('NIM harus diisi');
+		throw new Exception('NIM harus diisi', 400);
 	} else {
 		if (!is_numeric($data['nim'])) {
-			throw new ClientError('NIM harus berupa angka');
+			throw new Exception('NIM harus berupa angka', 400);
 		}
 	}
 	if (!isset($data['nama'])) {
-		throw new ClientError('Nama harus diisi');
+		throw new Exception('Nama harus diisi', 400);
 	}
 	if (!isset($data['jenis_kelamin'])) {
-		throw new ClientError('Jenis Kelamin harus diisi');
+		throw new Exception('Jenis Kelamin harus diisi', 400);
 	}
 	if (!isset($data['jurusan'])) {
-		throw new ClientError('Jurusan harus diisi');
+		throw new Exception('Jurusan harus diisi', 400);
 	}
 	if (!isset($data['alamat'])) {
-		throw new ClientError('Alamat harus diisi');
+		throw new Exception('Alamat harus diisi', 400);
 	}
 	if (!isset($data['email'])) {
-		throw new ClientError('Email harus diisi');
+		throw new Exception('Email harus diisi', 400);
 	}
 	if (!isset($data['no_hp'])) {
-		throw new ClientError('No HP harus diisi');
+		throw new Exception('No HP harus diisi', 400);
 	}
 }

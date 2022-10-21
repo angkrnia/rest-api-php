@@ -23,7 +23,7 @@ class MahasiswaService
 		$stmt->execute();
 
 		if (!$stmt->rowCount()) {
-			throw new NotFoundError("data not found");
+			throw new Exception("data not found", 404);
 		}
 
 		return $stmt;
@@ -43,7 +43,7 @@ class MahasiswaService
 		$stmt->execute();
 
 		if (!$stmt->rowCount()) {
-			throw new ClientError("Data gagal ditambahkan");
+			throw new Exception("Data gagal ditambahkan", 500);
 		}
 
 		return $this->conn->lastInsertId();
@@ -63,7 +63,7 @@ class MahasiswaService
 		$stmt->execute();
 
 		if (!$stmt->rowCount()) {
-			throw new NotFoundError("Data gagal diubah. Id tidak ditemukan");
+			throw new Exception("Data gagal diubah. Id tidak ditemukan", 404);
 		}
 
 		return $stmt;
@@ -76,7 +76,7 @@ class MahasiswaService
 		$stmt->execute();
 
 		if (!$stmt->rowCount()) {
-			throw new NotFoundError("Data gagal dihapus. Id tidak ditemukan");
+			throw new Exception("Data gagal dihapus. Id tidak ditemukan", 404);
 		}
 
 		return $stmt;
@@ -89,7 +89,7 @@ class MahasiswaService
 		$stmt->execute();
 
 		if ($stmt->rowCount()) {
-			throw new ClientError("NIM sudah terdaftar");
+			throw new Exception("NIM sudah terdaftar", 400);
 		}
 	}
 }
