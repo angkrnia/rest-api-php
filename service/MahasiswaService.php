@@ -83,7 +83,7 @@ class MahasiswaService
 	}
 	public function verifyNim($nim)
 	{
-		$query = "SELECT * FROM $this->table WHERE nim = :nim";
+		$query = "SELECT nim FROM $this->table WHERE nim = :nim";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(':nim', $nim);
 		$stmt->execute();
